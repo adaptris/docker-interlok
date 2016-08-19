@@ -13,8 +13,6 @@ RUN wget -q https://development.adaptris.net/installers/Interlok/3.3.0/install.b
     sh ./install.bin -f install.ini && \
     rm -rf /tmp/interlok
  
-COPY log4j2.xml /opt/interlok/config/log4j2.xml
-
 VOLUME /opt/interlok/config
 VOLUME /opt/interlok/logs
 
