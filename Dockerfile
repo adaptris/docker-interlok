@@ -11,6 +11,8 @@ COPY install.ini /tmp/interlok/install.ini
  
 RUN wget -q https://development.adaptris.net/installers/Interlok/3.3.0/install.bin && \
     sh ./install.bin -f install.ini && \
+    rm -rf /opt/interlok/optional && \
+    rm -rf /opt/interlok/UninstallerData && \
     rm -rf /tmp/interlok
  
 VOLUME /opt/interlok/config
