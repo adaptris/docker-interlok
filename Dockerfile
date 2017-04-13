@@ -10,7 +10,7 @@ WORKDIR /tmp/interlok/
 COPY install.ini /tmp/interlok/install.ini
 
 RUN wget -q https://development.adaptris.net/installers/Interlok/3.6.1/install.bin && \
-    sh ./interlok.bin -f install.ini && \
+    sh ./install.bin -f install.ini && \
     rm -rf /opt/interlok/optional && \
     rm -rf /opt/interlok/UninstallerData && \
     rm -rf /tmp/interlok
