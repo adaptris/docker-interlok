@@ -50,7 +50,6 @@
   <target name="download-libs" depends="prepare-ivy">
     <mkdir dir="${adapter.lib.directory}"/>
     <mkdir dir="${adapter.staging.directory}/docs/javadocs"/>    
-    <ivy:resolve file="${ivy.xml}" refresh="true" conf="compile,runtime,optional" showprogress="false" log="${ivy.logging}"/>
     <ivy:retrieve pattern="${adapter.lib.directory}/[artifact].[ext]" conf="compile,runtime,optional" type="jar,zip,bundle,maven-plugin,orbit,dll" log="${ivy.logging}"/>
     <ivy:retrieve pattern="${adapter.staging.directory}/docs/javadocs/[artifact]-[type].[ext]" organisation="com.adaptris" conf="javadoc" type="javadoc" log="${ivy.logging}"/>
     <delete>
