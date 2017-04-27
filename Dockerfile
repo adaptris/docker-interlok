@@ -1,13 +1,9 @@
-FROM adaptris/interlok:3.6.1
+FROM adaptris/interlok:latest-alpine
 
 EXPOSE 8080
 EXPOSE 5555
 
-RUN apt-get update && \
-    apt-get -y install ant && \
-    apt-get clean && \
-    cd /var/lib/apt/lists && rm -fr *Release* *Sources* *Packages* && \
-    truncate -s 0 /var/log/*log
+RUN apk add --no-cache --update apache-ant
 
 WORKDIR /opt/interlok
 ADD ant /opt/interlok/ant

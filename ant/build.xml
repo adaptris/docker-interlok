@@ -17,6 +17,7 @@
     <property name="ivy.repo" value="nexus-snapshots"/>
     <property name="ivy.xml" value="${ivy.dir}/ivy-interlok.xml"/>
     <property name="ivy.settings.xml" value="${ivy.dir}/ivy-settings.xml"/>
+    <property name="ivy.ui.war.xml" value="${ivy.dir}/ivy-interlok-ui.xml"/>
     <property name="ivy.logging" value="default"/>
 
     <property name="interlok.download.baseurl" value="${nexus.host}/nightly_builds/v3.x/${today}"/>
@@ -29,6 +30,7 @@
     <property name="adapter.staging.directory" value="/opt/interlok"/>
     <property name="adapter.lib.directory" value="${adapter.staging.directory}/lib"/>
     <property name="adapter.config.directory" value="${adapter.staging.directory}/config"/>
+    <property name="adapter.webapps.directory" value="${adapter.staging.directory}/webapps"/>
   </target>
 
   <target name="download-ivy" depends="init" unless="skip.ivy.download">
@@ -47,9 +49,8 @@
     <typedef resource="net/sf/antcontrib/antlib.xml" classpathref="antcontrib.classpath" uri="uri:package"/>
   </target>
 
-  <target name="download-libs" depends="prepare-ivy">
+  <target name="download-libs" depends="prepare-ivy,init.dirs">
     <mkdir dir="${adapter.lib.directory}"/>
-    <mkdir dir="${adapter.staging.directory}/docs/javadocs"/>    
     <ivy:retrieve pattern="${adapter.lib.directory}/[artifact].[ext]" conf="compile,runtime,optional" type="jar,zip,bundle,maven-plugin,orbit,dll" log="${ivy.logging}"/>
     <ivy:retrieve pattern="${adapter.staging.directory}/docs/javadocs/[artifact]-[type].[ext]" organisation="com.adaptris" conf="javadoc" type="javadoc" log="${ivy.logging}"/>
     <delete>
@@ -59,20 +60,9 @@
     </delete>
   </target>
 
-  <target name="download-ui" depends="init.dirs" unless="${skip.nightly.ui}">
-    <get src="${interlok.download.baseurl}/${interlok.download.basefs}" dest="${build.dir}/${interlok.download.basefs}" usetimestamp="true"/>
-    <unzip src="${build.dir}/${interlok.download.basefs}" dest="${build.tmp.dir}" overwrite="true"/>
-    <copy todir="${adapter.staging.directory}/config">
-      <fileset dir="${build.tmp.dir}/config">
-        <include name="jetty.xml"/>
-        <include name="webdefault.xml"/>
-        <include name="log4j2.xml"/>
-      </fileset>
-    </copy>
-    <copy todir="${adapter.staging.directory}/webapps" file="${build.tmp.dir}/webapps/interlok.war"/>
-    <delete dir="${adapter.staging.directory}/webapps">
-      <include name="adapter-web-gui.war"/>
-    </delete>
+  <target name="download-ui" depends="prepare-ivy,init.dirs">
+    <ivy:resolve file="${ivy.ui.war.xml}" conf="runtime" showprogress="false" log="${ivy.logging}"/>
+    <ivy:retrieve pattern="${adapter.webapps.directory}/[artifact].[ext]" conf="runtime" type="war" log="${ivy.logging}"/>
   </target>
 
   <target name="clean" depends="init" description="Clean up artifacts">
@@ -83,6 +73,8 @@
   <target name="init.dirs" depends="init">
     <mkdir dir="${adapter.lib.directory}"/>
     <mkdir dir="${adapter.config.directory}"/>
+    <mkdir dir="${adapter.webapps.directory}"/>
+    <mkdir dir="${adapter.staging.directory}/docs/javadocs"/>    
     <mkdir dir="${build.tmp.dir}"/>
   </target>
 
