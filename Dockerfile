@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM openjdk:8-jdk-alpine
 
 MAINTAINER Adaptris
 
@@ -9,7 +9,8 @@ WORKDIR /tmp/interlok/
 
 COPY install.ini /tmp/interlok/install.ini
 
-RUN wget -q https://development.adaptris.net/installers/Interlok/3.6.1/install.bin && \
+RUN apk add --no-cache --update ca-certificates openssl bash wget && \
+    wget -q https://development.adaptris.net/installers/Interlok/3.6.1/install.bin && \
     sh ./install.bin -f install.ini && \
     rm -rf /opt/interlok/optional && \
     rm -rf /opt/interlok/UninstallerData && \
