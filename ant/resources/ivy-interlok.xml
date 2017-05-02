@@ -22,20 +22,19 @@
     <dependency org="com.adaptris" name="adp-core" rev="${adp-core-version}" conf="runtime->default;javadoc->javadoc" changing="true"/>
     <dependency org="com.adaptris" name="interlok-logging" rev="${adp-core-version}" conf="runtime->default;javadoc->javadoc" changing="true"/>
 
-    <dependency org="com.thoughtworks.xstream" name="xstream" conf="runtime->default" rev="1.4.5" transitive="false"/>
-    <!-- These are the dependencies for Log4j2 (including the excludes) -->
-    <dependency org="org.slf4j" name="slf4j-api" rev="1.7.25" conf="runtime->default" />
-    <dependency org="org.slf4j" name="jcl-over-slf4j" rev="1.7.25" conf="runtime->default" />
-    <dependency org="org.slf4j" name="jul-to-slf4j" rev="1.7.25" conf="runtime->default" />
-    <dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.8.2" conf="runtime->default" />
-    <dependency org="org.apache.logging.log4j" name="log4j-1.2-api" rev="2.8.2"  conf="runtime->default" />
-    <dependency org="org.apache.logging.log4j" name="log4j-slf4j-impl" rev="2.8.2"  conf="runtime->default" />
-    <dependency org="org.apache.logging.log4j" name="log4j-api" rev="2.8.2"  conf="runtime->default"/>
     <dependency org="ant-contrib" name="ant-contrib" rev="1.0b3" transitive="false" conf="ant->default"/>
 
+    <!-- Exclude all logging; just use the ones provided by the base install -->
     <exclude org="ch.qos.logback" artifact="logback-core"/>
     <exclude org="ch.qos.logback" artifact="logback-classic"/>
     <exclude org="org.slf4j" artifact="slf4j-log4j12"/>
+    <exclude org="org.slf4j" artifact="slf4j-api"/>
+    <exclude org="org.slf4j" artifact="jcl-over-slf4j"/>
+    <exclude org="org.slf4j" artifact="jul-to-slf4j"/>
+    <exclude org="org.apache.logging.log4j" artifact="log4j-core"/>
+    <exclude org="org.apache.logging.log4j" artifact="log4j-1.2-api"/>
+    <exclude org="org.apache.logging.log4j" artifact="log4j-slf4j-impl"/>
+    <exclude org="org.apache.logging.log4j" artifact="log4j-api"/>
     <exclude org="log4j" artifact="log4j"/>
     <exclude org="asm"/>
     <exclude org="commons-logging"/>
