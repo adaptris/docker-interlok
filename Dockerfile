@@ -14,7 +14,7 @@ VOLUME [ "/opt/interlok/config", "/opt/interlok/logs" , "/opt/interlok/ui-resour
 RUN cd ant && \
     ant -emacs deploy && \
     rm -rf /opt/interlok/ant && \
-    chmod +x /docker-entyrpoint.sh && \
+    chmod +x /docker-entrypoint.sh && \
     rm -rf /root/.ivy2/cache/com.adaptris.ui
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
