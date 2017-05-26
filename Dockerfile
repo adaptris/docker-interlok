@@ -5,18 +5,20 @@ MAINTAINER Adaptris
 EXPOSE 8080
 EXPOSE 5555
 
-WORKDIR /tmp/interlok/
+ADD docker-entrypoint.sh /
+RUN mkdir -p /opt/interlok/logs
+WORKDIR /opt/interlok/
 
-COPY install.ini /tmp/interlok/install.ini
-
-RUN wget -q https://development.adaptris.net/installers/Interlok/3.6.1/install.bin && \
-    sh ./install.bin -f install.ini && \
+RUN wget -q https://development.adaptris.net/installers/Interlok/3.6.2/base-filesystem.zip && \
+    wget -q https://development.adaptris.net/installers/Interlok/3.6.2/runtime-libraries.zip && \
+    wget -q https://development.adaptris.net/installers/Interlok/3.6.2/javadocs.zip && \
+    unzip -n -q javadocs.zip && \
+    unzip -n -q  runtime-libraries.zip && \
+    unzip -n -q  base-filesystem.zip && \
     rm -rf /opt/interlok/optional && \
-    rm -rf /opt/interlok/UninstallerData && \
-    rm -rf /tmp/interlok
+    rm -rf /opt/interlok/docs/javadocs/optional && \
+    rm -rf *.zip
 
 VOLUME [ "/opt/interlok/config", "/opt/interlok/logs" , "/opt/interlok/ui-resources" ]
 
-WORKDIR /opt/interlok
-
-ENTRYPOINT ["/opt/interlok/bin/adapter"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
