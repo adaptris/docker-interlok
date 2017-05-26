@@ -9,9 +9,9 @@ ADD docker-entrypoint.sh /
 RUN mkdir -p /opt/interlok/logs
 WORKDIR /opt/interlok/
 
-RUN wget -q https://development.adaptris.net/installers/Interlok/3.6.1/base-filesystem.zip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.6.1/runtime-libraries.zip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.6.1/javadocs.zip && \
+RUN wget -q https://development.adaptris.net/installers/Interlok/3.6.2/base-filesystem.zip && \
+    wget -q https://development.adaptris.net/installers/Interlok/3.6.2/runtime-libraries.zip && \
+    wget -q https://development.adaptris.net/installers/Interlok/3.6.2/javadocs.zip && \
     unzip -n -q javadocs.zip && \
     unzip -n -q  runtime-libraries.zip && \
     unzip -n -q  base-filesystem.zip && \
