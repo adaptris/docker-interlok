@@ -17,6 +17,7 @@ RUN wget -q https://development.adaptris.net/installers/Interlok/3.6.2/base-file
     unzip -o -q  base-filesystem.zip && \
     rm -rf /opt/interlok/optional && \
     rm -rf /opt/interlok/docs/javadocs/optional && \
+    chmod +x /docker-entrypoint.sh && \
     rm -rf *.zip
 
 VOLUME [ "/opt/interlok/config", "/opt/interlok/logs" , "/opt/interlok/ui-resources" ]
