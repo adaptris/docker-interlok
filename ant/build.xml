@@ -51,8 +51,8 @@
 
   <target name="download-libs" depends="prepare-ivy,init.dirs">
     <mkdir dir="${adapter.lib.directory}"/>
-    <ivy:retrieve pattern="${adapter.lib.directory}/[artifact].[ext]" conf="compile,runtime,optional" type="jar,zip,bundle,maven-plugin,orbit,dll" log="${ivy.logging}"/>
-    <ivy:retrieve pattern="${adapter.staging.directory}/docs/javadocs/[artifact]-[type].[ext]" organisation="com.adaptris" conf="javadoc" type="javadoc" log="${ivy.logging}"/>
+    <ivy:retrieve pattern="${adapter.lib.directory}/[artifact].[ext]" conf="compile,runtime,optional" type="jar,zip,bundle,maven-plugin,orbit,dll" log="${ivy.logging}"  overwriteMode="always"/>
+    <ivy:retrieve pattern="${adapter.staging.directory}/docs/javadocs/[artifact]-[type].[ext]" organisation="com.adaptris" conf="javadoc" type="javadoc" log="${ivy.logging}" overwriteMode="always"/>
     <delete>
       <fileset dir="${adapter.lib.directory}">
         <include name="**/*.pom"/>
@@ -62,7 +62,7 @@
 
   <target name="download-ui" depends="prepare-ivy,init.dirs">
     <ivy:resolve file="${ivy.ui.war.xml}" conf="runtime" showprogress="false" log="${ivy.logging}"/>
-    <ivy:retrieve pattern="${adapter.webapps.directory}/[artifact].[ext]" conf="runtime" type="war" log="${ivy.logging}"/>
+    <ivy:retrieve pattern="${adapter.webapps.directory}/[artifact].[ext]" conf="runtime" type="war" log="${ivy.logging}" overwriteMode="always"/>
   </target>
 
   <target name="clean" depends="init" description="Clean up artifacts">
