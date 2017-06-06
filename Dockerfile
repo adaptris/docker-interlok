@@ -12,9 +12,9 @@ WORKDIR /opt/interlok/
 RUN wget -q https://development.adaptris.net/installers/Interlok/3.6.2/base-filesystem.zip && \
     wget -q https://development.adaptris.net/installers/Interlok/3.6.2/runtime-libraries.zip && \
     wget -q https://development.adaptris.net/installers/Interlok/3.6.2/javadocs.zip && \
-    unzip -n -q javadocs.zip && \
-    unzip -n -q  runtime-libraries.zip && \
-    unzip -n -q  base-filesystem.zip && \
+    unzip -o -q javadocs.zip && \
+    unzip -o -q  runtime-libraries.zip && \
+    unzip -o -q  base-filesystem.zip && \
     rm -rf /opt/interlok/optional && \
     rm -rf /opt/interlok/docs/javadocs/optional && \
     rm -rf *.zip
