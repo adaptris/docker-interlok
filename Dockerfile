@@ -18,6 +18,7 @@ RUN apk add --no-cache --update ca-certificates openssl bash wget unzip && \
     unzip -q -o  base-filesystem.zip && \
     rm -rf /opt/interlok/optional && \
     rm -rf /opt/interlok/docs/javadocs/optional && \
+    chmod +x /docker-entrypoint.sh && \
     rm -rf *.zip
 
 VOLUME [ "/opt/interlok/config", "/opt/interlok/logs" , "/opt/interlok/ui-resources" ]
