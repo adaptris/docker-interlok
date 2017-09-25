@@ -20,8 +20,12 @@
     <dependency org="com.adaptris" name="interlok-common" rev="${adp-core-version}" conf="runtime->default;javadoc->javadoc"  changing="true"/>
     <dependency org="com.adaptris" name="adp-core-apt" rev="${adp-core-version}" conf="runtime->default"  changing="true"/>
     <dependency org="com.adaptris" name="adp-core" rev="${adp-core-version}" conf="runtime->default;javadoc->javadoc" changing="true"/>
-    <dependency org="com.adaptris" name="interlok-logging" rev="${adp-core-version}" conf="runtime->default;javadoc->javadoc" changing="true"/>
-
+    <dependency org="com.adaptris" name="interlok-logging" rev="${adp-core-version}" conf="compile->default" changing="true">
+       <artifact name="interlok-logging" type="jar" conf="compile"/>
+    </dependency>
+    <dependency org="com.adaptris" name="interlok-boot" rev="${adp-core-version}" conf="compile->default" changing="true">
+       <artifact name="interlok-boot" type="jar" conf="compile"/>
+    </dependency>
     <dependency org="ant-contrib" name="ant-contrib" rev="1.0b3" transitive="false" conf="ant->default"/>
 
     <!-- Exclude all logging; just use the ones provided by the base install -->
