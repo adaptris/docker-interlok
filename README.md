@@ -4,4 +4,4 @@ Basic Docker image of the adapter based on alpine-linux
 
 * Exposes ports 8080 + 5555
 * Installed to /opt/interlok
-* Volumes : /opt/interlok/config /opt/interlok/logs
+* Volumes : /opt/interlok/config /opt/interlok/logs /opt/interlok/ui-resources
