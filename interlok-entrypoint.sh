@@ -7,4 +7,4 @@ INTERLOK_OPTS=${INTERLOK_OPTS:="bootstrap.properties"}
 INTERLOK_BASE=${INTERLOK_BASE:="/opt/interlok"}
 
 cd ${INTERLOK_BASE}
-exec java $JVM_ARGS $JAVA_OPTS -jar lib/adp-core.jar $INTERLOK_OPTS
+exec java $JVM_ARGS $JAVA_OPTS -jar lib/interlok-boot.jar $INTERLOK_OPTS

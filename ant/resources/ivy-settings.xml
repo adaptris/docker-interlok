@@ -1,0 +1,26 @@
+<ivysettings>
+  <settings defaultResolver="chain-resolver"/>
+  <properties file="${user.home}/.ivy2/ivy-settings.properties"/>
+
+  <property name="nexus-base-url" value="https://development.adaptris.net"/>
+
+  <property name="nexus-public" value="${nexus-base-url}/nexus/content/groups/public" override="false"/>
+  <property name="nexus-private" value="${nexus-base-url}/nexus/content/groups/private" override="false"/>
+  <property name="nexus-releases" value="${nexus-base-url}/nexus/content/repositories/releases" override="false"/>
+  <property name="nexus-snapshots" value="${nexus-base-url}/nexus/content/repositories/snapshots" override="false"/>
+  <property name="thirdparty-snapshots" value="${nexus-base-url}/nexus/content/groups/thirdparty-snapshots/" override="false"/>
+  <property name="default.ivy.repo" value="https://repo1.maven.org/maven2/" override="false"/>
+  
+  <resolvers>
+    <chain name="nexus-repo-resolver">
+      <ibiblio name="nexus-releases" m2compatible="true" root="${nexus-releases}"/>
+      <ibiblio name="nexus-snapshots" m2compatible="true" root="${nexus-snapshots}" checkmodified="true" changingPattern=".*-SNAPSHOT"/>
+      <ibiblio name="nexus-public" m2compatible="true" root="${nexus-public}"/>
+      <ibiblio name="thirdparty-snapshots" m2compatible="true" root="${thirdparty-snapshots}" changingPattern=".*SNAPSHOT.*" checkmodified="true"/>      
+    </chain>
+    <chain name="chain-resolver">
+      <ibiblio name="default-ivy-repo" m2compatible="true" root="${default.ivy.repo}"/>      
+      <resolver ref="nexus-repo-resolver"/>
+    </chain>
+  </resolvers>
+</ivysettings>
