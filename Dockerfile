@@ -19,15 +19,12 @@ ADD interlok-entrypoint.sh /
 RUN mkdir -p /opt/interlok/logs
 WORKDIR /opt/interlok/
 
-RUN wget -q https://development.adaptris.net/installers/Interlok/3.6.6/base-filesystem.zip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.6.6/runtime-libraries.zip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.6.6/javadocs.zip && \
-    unzip -o -q javadocs.zip && \
+RUN wget -q https://development.adaptris.net/installers/Interlok/3.7.0/base-filesystem.zip && \
+    wget -q https://development.adaptris.net/installers/Interlok/3.7.0/runtime-libraries.zip && \
     unzip -o -q  runtime-libraries.zip && \
     unzip -o -q  base-filesystem.zip && \
     cp /opt/interlok/optional/hpcc/interlok-hpcc.jar /opt/interlok/lib/interlok-hpcc.jar && \
     rm -rf /opt/interlok/optional && \
-    rm -rf /opt/interlok/docs/javadocs/optional && \
     chmod +x /docker-entrypoint.sh && \
     rm -rf *.zip && \
     wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.1/dumb-init_1.2.1_amd64 && \
