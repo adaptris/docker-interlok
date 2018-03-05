@@ -7,11 +7,8 @@ EXPOSE 5555
 EXPOSE 7100
 
 RUN yum -y update && \
-    yum -y clean all && \
-    yum -y install apr apr-util boost-regex expect atlas tbb && \
+    yum -y install apr apr-util boost-regex expect atlas tbb wget unzip java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
     yum -y install http://cdn.hpccsystems.com/releases/CE-Candidate-6.4.6/bin/clienttools/hpccsystems-clienttools-community_6.4.6-1.el7.x86_64.rpm && \
-    yum -y install wget unzip && \
-    yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
     yum -y clean all
 
 ADD docker-entrypoint.sh /
