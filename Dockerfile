@@ -1,4 +1,4 @@
-FROM adaptris/interlok:3.6.6-alpine
+FROM adaptris/interlok:3.7.1-alpine
 
 EXPOSE 8080
 EXPOSE 5555
@@ -12,7 +12,7 @@ ADD docker-entrypoint.sh /
 VOLUME [ "/opt/interlok/config", "/opt/interlok/logs" , "/opt/interlok/ui-resources" ]
 
 RUN cd ant && \
-    ant -emacs deploy && \
+    ant -autoproxy -emacs deploy && \
     rm -rf /opt/interlok/ant && \
     chmod +x /docker-entrypoint.sh && \
     rm -rf /root/.ivy2/cache/com.adaptris.ui
