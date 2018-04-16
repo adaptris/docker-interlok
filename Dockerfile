@@ -13,7 +13,6 @@ ADD ant /opt/interlok/ant
 RUN yum -y install ant && \
     yum -y clean all && \
     cd ant && \
-    echo $ANT_OPTS && \
     ant -emacs deploy && \
     rm -rf /opt/interlok/ant && \
     chmod +x /docker-entrypoint.sh && \
