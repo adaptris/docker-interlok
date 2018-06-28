@@ -23,6 +23,7 @@ RUN wget -q https://development.adaptris.net/installers/Interlok/3.7.3/base-file
     cp /opt/interlok/optional/hpcc/interlok-hpcc.jar /opt/interlok/lib/interlok-hpcc.jar && \
     rm -rf /opt/interlok/optional && \
     chmod +x /docker-entrypoint.sh && \
+    chmod +x /interlok-entrypoint.sh && \
     rm -rf *.zip && \
     wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.1/dumb-init_1.2.1_amd64 && \
     chmod +x /usr/local/bin/dumb-init
