@@ -1,4 +1,4 @@
-FROM adaptris/interlok:3.7.1
+FROM adaptris/interlok:3.7.3
 
 EXPOSE 8080
 EXPOSE 5555
@@ -15,7 +15,8 @@ ADD docker-entrypoint.sh /
 
 VOLUME [ "/opt/interlok/config", "/opt/interlok/logs" , "/opt/interlok/ui-resources" ]
 
-RUN cd ant && \
+RUN rm -f /opt/interlok/lib/adp-*.jar && \
+    cd ant && \
     ant -autoproxy -emacs deploy && \
     rm -rf /opt/interlok/ant && \
     chmod +x /docker-entrypoint.sh && \
