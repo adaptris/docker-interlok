@@ -1,4 +1,4 @@
-FROM adaptris/interlok:3.7.1-hpcc
+FROM adaptris/interlok:3.7.3-hpcc
 
 EXPOSE 8080
 EXPOSE 5555
@@ -12,6 +12,7 @@ ADD ant /opt/interlok/ant
 
 RUN yum -y install ant && \
     yum -y clean all && \
+    rm -f /opt/interlok/lib/adp-*.jar && \
     cd ant && \
     ant -emacs deploy && \
     rm -rf /opt/interlok/ant && \
