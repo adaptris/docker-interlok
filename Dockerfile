@@ -1,4 +1,4 @@
-FROM adaptris/interlok:3.7.1-alpine
+FROM adaptris/interlok:3.7.3-alpine
 
 EXPOSE 8080
 EXPOSE 5555
@@ -13,7 +13,9 @@ ENV ANT_OPTS=$ant_opts
 
 VOLUME [ "/opt/interlok/config", "/opt/interlok/logs" , "/opt/interlok/ui-resources" ]
 
-RUN cd ant && \
+# Remove the legacy adp-*.jar from the distribution first
+RUN rm -f /opt/interlok/lib/adp-*.jar && \
+    cd ant && \
     ant -emacs deploy && \
     rm -rf /opt/interlok/ant && \
     chmod +x /docker-entrypoint.sh && \
