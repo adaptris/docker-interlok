@@ -10,9 +10,9 @@ RUN mkdir -p /opt/interlok/logs
 WORKDIR /opt/interlok/
 
 RUN apk add --no-cache --update ca-certificates openssl bash wget unzip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.8.1/base-filesystem.zip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.8.1/runtime-libraries.zip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.8.1/javadocs.zip && \
+    wget -q https://development.adaptris.net/installers/Interlok/3.8.2/base-filesystem.zip && \
+    wget -q https://development.adaptris.net/installers/Interlok/3.8.2/runtime-libraries.zip && \
+    wget -q https://development.adaptris.net/installers/Interlok/3.8.2/javadocs.zip && \
     unzip -q -o javadocs.zip && \
     unzip -q -o runtime-libraries.zip && \
     unzip -q -o  base-filesystem.zip && \
