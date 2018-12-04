@@ -1,4 +1,4 @@
-FROM adaptris/interlok:3.8.1
+FROM adaptris/interlok:3.8.2
 
 EXPOSE 8080
 EXPOSE 5555
