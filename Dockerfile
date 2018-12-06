@@ -16,8 +16,8 @@ ADD interlok-entrypoint.sh /
 RUN mkdir -p /opt/interlok/logs
 WORKDIR /opt/interlok/
 
-RUN wget -q https://development.adaptris.net/installers/Interlok/3.8.2/base-filesystem.zip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.8.2/runtime-libraries.zip && \
+RUN wget -q https://development.adaptris.net/installers/Interlok/3.8.2.1/base-filesystem.zip && \
+    wget -q https://development.adaptris.net/installers/Interlok/3.8.2.1/runtime-libraries.zip && \
     unzip -o -q  runtime-libraries.zip && \
     unzip -o -q  base-filesystem.zip && \
     cp /opt/interlok/optional/hpcc/interlok-hpcc.jar /opt/interlok/lib/interlok-hpcc.jar && \
