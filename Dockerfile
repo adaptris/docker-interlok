@@ -1,4 +1,4 @@
-FROM adaptris/interlok:3.8.2-hpcc
+FROM adaptris/interlok:latest-hpcc
 
 EXPOSE 8080
 EXPOSE 5555
