@@ -17,7 +17,7 @@ RUN yum -y install ant && \
     ant -emacs deploy && \
     rm -rf /opt/interlok/ant && \
     chmod +x /docker-entrypoint.sh && \
-    rm -rf /root/.ivy2/cache/com.adaptris.ui
+    rm -rf /root/.ivy2/cache
 
 ENV ANT_OPTS=""
 
