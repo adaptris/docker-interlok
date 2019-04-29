@@ -2,7 +2,7 @@
 set -e
 
 JVM_ARGS=${JVM_ARGS:="-Xmx1024m"}
-JAVA_OPTS=${JAVA_OPTS:="-Dsun.net.inetaddr.ttl=3600"}
+JAVA_OPTS=${JAVA_OPTS:="-Dsun.net.inetaddr.ttl=30"}
 INTERLOK_OPTS=${INTERLOK_OPTS:="bootstrap.properties"}
 INTERLOK_BASE=${INTERLOK_BASE:="/opt/interlok"}
 
