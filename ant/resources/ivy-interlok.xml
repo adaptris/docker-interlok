@@ -17,16 +17,22 @@
   <publications>
   </publications>
   <dependencies>
-    <dependency org="com.adaptris" name="interlok-common" rev="${interlok-core-version}" conf="runtime->default;javadoc->javadoc"  changing="true"/>
+    <dependency org="com.adaptris" name="interlok-common" rev="${interlok-core-version}" conf="runtime->default"  changing="true"/>
     <dependency org="com.adaptris" name="interlok-core-apt" rev="${interlok-core-version}" conf="runtime->default"  changing="true"/>
-    <dependency org="com.adaptris" name="interlok-core" rev="${interlok-core-version}" conf="runtime->default;javadoc->javadoc" changing="true"/>
-    <dependency org="com.adaptris" name="interlok-hpcc" rev="${interlok-core-version}" conf="runtime->default;javadoc->default" changing="true"/>
+    <dependency org="com.adaptris" name="interlok-core" rev="${interlok.core.revision}" conf="compile->default;javadoc->default" changing="true">
+       <artifact name="interlok-core" type="jar" conf="compile"/>
+       <artifact name="interlok-core" type="javadoc" ext="jar" conf="javadoc" m:classifier="javadoc"/>
+    </dependency>
     <dependency org="com.adaptris" name="interlok-logging" rev="${interlok-core-version}" conf="compile->default" changing="true">
        <artifact name="interlok-logging" type="jar" conf="compile"/>
     </dependency>
     <dependency org="com.adaptris" name="interlok-boot" rev="${interlok-core-version}" conf="compile->default" changing="true">
        <artifact name="interlok-boot" type="jar" conf="compile"/>
     </dependency>
+    <dependency org="com.adaptris" name="interlok-licensing" rev="${interlok-core-version}" conf="compile->default" changing="true">
+       <artifact name="interlok-licensing" type="jar" conf="compile"/>
+    </dependency>
+
     <dependency org="ant-contrib" name="ant-contrib" rev="1.0b3" transitive="false" conf="ant->default"/>
 
     <!-- Exclude all logging; just use the ones provided by the base install -->
