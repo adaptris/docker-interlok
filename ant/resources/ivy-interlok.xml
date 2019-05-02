@@ -19,7 +19,7 @@
   <dependencies>
     <dependency org="com.adaptris" name="interlok-common" rev="${interlok-core-version}" conf="runtime->default"  changing="true"/>
     <dependency org="com.adaptris" name="interlok-core-apt" rev="${interlok-core-version}" conf="runtime->default"  changing="true"/>
-    <dependency org="com.adaptris" name="interlok-core" rev="${interlok.core.revision}" conf="compile->default;javadoc->default" changing="true">
+    <dependency org="com.adaptris" name="interlok-core" rev="${interlok-core-revision}" conf="compile->default;javadoc->default" changing="true">
        <artifact name="interlok-core" type="jar" conf="compile"/>
        <artifact name="interlok-core" type="javadoc" ext="jar" conf="javadoc" m:classifier="javadoc"/>
     </dependency>
