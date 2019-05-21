@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM azul/zulu-openjdk-alpine:8
 
 MAINTAINER Adaptris
 
@@ -9,7 +9,8 @@ ADD docker-entrypoint.sh /
 RUN mkdir -p /opt/interlok/logs
 WORKDIR /opt/interlok/
 
-RUN wget -q https://development.adaptris.net/installers/Interlok/3.8.4/base-filesystem.zip && \
+RUN apk add --no-cache --update ca-certificates openssl bash wget unzip && \
+    wget -q https://development.adaptris.net/installers/Interlok/3.8.4/base-filesystem.zip && \
     wget -q https://development.adaptris.net/installers/Interlok/3.8.4/runtime-libraries.zip && \
     wget -q https://development.adaptris.net/installers/Interlok/3.8.4/javadocs.zip && \
     unzip -o -q javadocs.zip && \
