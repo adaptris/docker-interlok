@@ -4,8 +4,8 @@ EXPOSE 8080
 EXPOSE 5555
 EXPOSE 7100
 
-ARG ant_opts
-ENV ANT_OPTS=$ant_opts
+ARG java_tool_opts
+ENV JAVA_TOOL_OPTIONS=$java_tool_opts
 
 WORKDIR /opt/interlok/
 ADD ant /opt/interlok/ant
@@ -19,6 +19,6 @@ RUN yum -y install ant && \
     chmod +x /docker-entrypoint.sh && \
     rm -rf /root/.ivy2/cache
 
-ENV ANT_OPTS=""
+ENV JAVA_TOOL_OPTIONS=""
 
 VOLUME [ "/opt/interlok/config", "/opt/interlok/logs" , "/opt/interlok/ui-resources" ]
