@@ -1,26 +1,21 @@
-FROM amazoncorretto:8
-
-MAINTAINER Adaptris
+FROM adaptris/interlok:latest-corretto
 
 EXPOSE 8080
 EXPOSE 5555
 
-ADD docker-entrypoint.sh /
-RUN mkdir -p /opt/interlok/logs
-WORKDIR /opt/interlok/
+ARG java_tool_opts
+ENV JAVA_TOOL_OPTIONS=$java_tool_opts
 
-RUN yum install -y wget unzip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.8.4/base-filesystem.zip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.8.4/runtime-libraries.zip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.8.4/javadocs.zip && \
-    unzip -o -q javadocs.zip && \
-    unzip -o -q  runtime-libraries.zip && \
-    unzip -o -q  base-filesystem.zip && \
-    rm -rf /opt/interlok/optional && \
-    rm -rf /opt/interlok/docs/javadocs/optional && \
+WORKDIR /opt/interlok
+COPY builder /root/builder
+
+RUN cd /root/builder && \
+    chmod +x /root/builder/gradlew && \
+    ./gradlew --no-daemon installDist && \
     chmod +x /docker-entrypoint.sh && \
-    rm -rf *.zip
+    rm -rf /root/.gradle && \
+    rm -rf /root/builder
+
+ENV JAVA_TOOL_OPTIONS=""
 
 VOLUME [ "/opt/interlok/config", "/opt/interlok/logs" , "/opt/interlok/ui-resources" ]
-
-ENTRYPOINT ["/docker-entrypoint.sh"]
