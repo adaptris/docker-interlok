@@ -11,7 +11,6 @@ RUN apt-get update && \
 
 WORKDIR /opt/interlok
 ADD ant /opt/interlok/ant
-ADD docker-entrypoint.sh /
 
 VOLUME [ "/opt/interlok/config", "/opt/interlok/logs" , "/opt/interlok/ui-resources" ]
 
