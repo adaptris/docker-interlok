@@ -7,9 +7,8 @@ RUN apk add --no-cache --update apache-ant
 
 WORKDIR /opt/interlok
 ADD ant /opt/interlok/ant
-ADD docker-entrypoint.sh /
-ARG ant_opts
-ENV ANT_OPTS=$ant_opts
+ARG java_tool_opts
+ENV JAVA_TOOL_OPTIONS=$java_tool_opts
 
 VOLUME [ "/opt/interlok/config", "/opt/interlok/logs" , "/opt/interlok/ui-resources" ]
 
@@ -21,6 +20,6 @@ RUN rm -f /opt/interlok/lib/adp-*.jar && \
     chmod +x /docker-entrypoint.sh && \
     rm -rf /root/.ivy2/cache
 
-ENV ANT_OPTS=""
+ENV JAVA_TOOL_OPTIONS=""
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
