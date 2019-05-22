@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:8
+FROM adaptris/interlok:latest-zulu-alpine
 
 MAINTAINER Adaptris
 
