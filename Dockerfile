@@ -6,18 +6,17 @@ EXPOSE 7100
 
 ARG java_tool_opts
 ENV JAVA_TOOL_OPTIONS=$java_tool_opts
+ENV JAVA_HOME=/usr/lib/jvm/java
 
-WORKDIR /opt/interlok/
-ADD ant /opt/interlok/ant
+WORKDIR /opt/interlok
+COPY builder /root/builder
 
-RUN yum -y install ant && \
-    yum -y clean all && \
-    rm -f /opt/interlok/lib/adp-*.jar && \
-    cd ant && \
-    ant -emacs deploy && \
-    rm -rf /opt/interlok/ant && \
+RUN cd /root/builder && \
+    chmod +x /root/builder/gradlew && \
+    ./gradlew --no-daemon installDist && \
     chmod +x /docker-entrypoint.sh && \
-    rm -rf /root/.ivy2/cache
+    rm -rf /root/.gradle && \
+    rm -rf /root/builder
 
 ENV JAVA_TOOL_OPTIONS=""
 
