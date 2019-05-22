@@ -1,0 +1,93 @@
+plugins {
+  id "distribution"
+}
+
+ext {
+  interlokCoreVersion = project.hasProperty('interlokCoreVersion') ? project.getProperty('interlokCoreVersion') : '3.9-SNAPSHOT'
+  interlokWarVersion = project.hasProperty('interlokWarVersion') ? project.getProperty('interlokWarVersion') : interlokCoreVersion
+
+  nexusBaseUrl = project.hasProperty('nexusBaseUrl') ? project.getProperty('nexusBaseUrl') : 'https://nexus.adaptris.net/nexus'
+
+  interlokInstallDirectory = project.hasProperty('interlokInstallDirectory') ? project.getProperty('interlokInstallDirectory') :  "/opt/interlok"
+  log4j2Version = '2.11.2'
+  slf4jVersion = '1.7.26'
+}
+
+distTar.enabled=false
+distZip.enabled=true
+
+repositories {
+  mavenCentral()
+  maven { url "$nexusBaseUrl/content/groups/public" }
+  maven { url "$nexusBaseUrl/content/groups/interlok" }
+}
+
+
+configurations() {
+  interlokRuntime{}
+  interlokJavaDocs{}
+  interlokWar{}
+  all*.exclude group: 'c3p0'
+  all*.exclude group: 'commons-logging'
+  all*.exclude group: 'javamail'
+  all*.exclude group: 'javax.mail', module: 'mail'
+  all*.exclude group: 'org.glassfish.hk2.external'
+  all*.exclude group: 'xalan', module: 'xalan'
+  all*.exclude group: 'net.sf.saxon', module: 'saxon'
+  all*.exclude group: 'org.codehaus.woodstox'
+  all*.exclude group: 'org.eclipse.jetty.orbit', module: 'javax.mail.glassfish'
+  all*.exclude group: 'com.vaadin.external.google', module: 'android-json'  
+}
+
+configurations.all {
+  resolutionStrategy.cacheChangingModulesFor 0, "seconds"
+}
+
+dependencies {
+  interlokRuntime  group: "com.adaptris", name: "interlok-core-apt", version: "$interlokCoreVersion", changing: true
+  interlokRuntime  group: "com.adaptris", name: "interlok-boot", version: "$interlokCoreVersion", changing: true
+  interlokRuntime  group: "com.adaptris", name: "interlok-common", version: "$interlokCoreVersion", changing: true
+  interlokRuntime  group: "com.adaptris", name: "interlok-logging", version: "$interlokCoreVersion", changing: true
+  interlokRuntime  group: "com.adaptris", name: "interlok-core", version: "$interlokCoreVersion", changing: true
+  interlokRuntime  group: "com.adaptris", name: "interlok-licensing", version: "$interlokCoreVersion", changing: true
+
+  // If you want javadocs.
+  interlokJavaDocs group: "com.adaptris", name: "interlok-core", version: "$interlokCoreVersion", changing: true, classifier: "javadoc", transitive: false
+
+  interlokRuntime group: "org.slf4j", name: "slf4j-api", version: "$slf4jVersion"
+  interlokRuntime group: "org.slf4j", name: "jcl-over-slf4j", version: "$slf4jVersion"
+  interlokRuntime group: "org.slf4j", name: "jul-to-slf4j", version: "$slf4jVersion"
+
+  interlokRuntime group: "org.apache.logging.log4j", name: "log4j-core", version: "$log4j2Version"
+  interlokRuntime group: "org.apache.logging.log4j", name: "log4j-1.2-api", version: "$log4j2Version"
+  interlokRuntime group: "org.apache.logging.log4j", name: "log4j-slf4j-impl", version: "$log4j2Version"
+  interlokRuntime group: "org.apache.logging.log4j", name: "log4j-api", version: "$log4j2Version"
+
+  interlokWar group: "com.adaptris.ui", name: "interlok", version: "$interlokWarVersion", ext: "war", changing: true
+}
+
+distributions {
+  main {
+    contents {
+      into('lib') {
+        from(project.configurations.interlokRuntime)
+      }
+      into('webapps') {
+        from(project.configurations.interlokWar)
+      }
+      into('docs/javadocs') {
+        from(project.configurations.interlokJavaDocs)
+      }
+      rename '(.*)-[0-9]+\\..*.jar', '$1.jar'
+      rename '(.*)-[0-9]+\\..*.war', '$1.war'
+    }
+  }
+}
+
+
+installDist {
+  destinationDir = new File(interlokInstallDirectory)
+  preserve {
+    include '**/**'
+  }
+}
