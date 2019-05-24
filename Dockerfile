@@ -9,7 +9,7 @@ ADD docker-entrypoint.sh /
 RUN mkdir -p /opt/interlok/logs
 WORKDIR /opt/interlok/
 
-RUN apk add --no-cache --update ca-certificates openssl bash wget unzip && \
+RUN apk add --no-cache --update ca-certificates openssl bash wget unzip nss && \
     wget -q https://development.adaptris.net/installers/Interlok/3.8.4/base-filesystem.zip && \
     wget -q https://development.adaptris.net/installers/Interlok/3.8.4/runtime-libraries.zip && \
     wget -q https://development.adaptris.net/installers/Interlok/3.8.4/javadocs.zip && \
