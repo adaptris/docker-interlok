@@ -6,9 +6,13 @@ EXPOSE 8080
 EXPOSE 5555
 EXPOSE 7100
 
+# Since python34-libs requires epel-release we have to do at least 2 yum install steps; this does make me sad.
+# This list is also probably too many packages; but the hpcc documentation doesn't tell use the precise dependencies.
+# First line was sufficient (-epel-release) for client-tools 6.4.46; the line starting m4 required by 7.2.12
 RUN yum -y update && \
-    yum -y install apr apr-util boost-regex expect atlas tbb wget unzip java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
-    yum -y install http://cdn.hpccsystems.com/releases/CE-Candidate-6.4.6/bin/clienttools/hpccsystems-clienttools-community_6.4.6-1.el7.x86_64.rpm && \
+    yum -y install epel-release apr apr-util boost-regex expect atlas tbb wget unzip java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
+    yum -y install m4 libtool gcc-c++ openssh-server openssh-clients rsync psmisc zip libarchive libmemcached numactl-libs python34-libs && \
+    yum -y install https://edgecastcdn.net/00423A/releases/CE-Candidate-7.2.12/bin/clienttools/hpccsystems-clienttools-community_7.2.12-1.el7.x86_64.rpm && \
     yum -y clean all
 
 ADD docker-entrypoint.sh /
