@@ -12,7 +12,7 @@ EXPOSE 7100
 RUN yum -y update && \
     yum -y install epel-release apr apr-util boost-regex expect atlas tbb wget unzip java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
     yum -y install m4 libtool gcc-c++ openssh-server openssh-clients rsync psmisc zip libarchive libmemcached numactl-libs python34-libs && \
-    yum -y install https://edgecastcdn.net/00423A/releases/CE-Candidate-7.2.12/bin/clienttools/hpccsystems-clienttools-community_7.2.12-1.el7.x86_64.rpm && \
+    yum -y install https://edgecastcdn.net/00423A/releases/CE-Candidate-7.2.16/bin/clienttools/hpccsystems-clienttools-community_7.2.16-1.el7.x86_64.rpm && \
     yum -y clean all
 
 ADD docker-entrypoint.sh /
