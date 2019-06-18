@@ -7,9 +7,10 @@ EXPOSE 8080 5555
 ARG INTERLOK_VERSION=3.8.4
 ARG BASE_URL=https://development.adaptris.net/installers/Interlok/${INTERLOK_VERSION}/
 
-RUN apt-get update && \
+RUN apt-get -y -q update && \
+    apt-get -y -q upgrade && \
     apt-get install -y curl bash unzip && \
-    rm -rf /var/lib/apt/lists/* 
+    rm -rf /var/lib/apt/lists/*
 
 ADD docker-entrypoint.sh /
 RUN mkdir -p /opt/interlok/logs
