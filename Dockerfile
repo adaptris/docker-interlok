@@ -2,17 +2,23 @@ FROM amazoncorretto:8
 
 MAINTAINER Adaptris
 
-EXPOSE 8080
-EXPOSE 5555
+EXPOSE 8080 5555
+
+ARG INTERLOK_VERSION=3.9.0
+ARG BASE_URL=https://development.adaptris.net/installers/Interlok/${INTERLOK_VERSION}/
+
+RUN yum update -y update && \
+    yum install -y curl unzip && \
+    yum clean all
 
 ADD docker-entrypoint.sh /
 RUN mkdir -p /opt/interlok/logs
 WORKDIR /opt/interlok/
 
-RUN yum install -y wget unzip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.8.4/base-filesystem.zip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.8.4/runtime-libraries.zip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.8.4/javadocs.zip && \
+RUN  \
+    curl -fsSL -o base-filesystem.zip -q ${BASE_URL}/base-filesystem.zip && \
+    curl -fsSL -o runtime-libraries.zip ${BASE_URL}/runtime-libraries.zip && \
+    curl -fsSL -o javadocs.zip ${BASE_URL}/javadocs.zip && \
     unzip -o -q javadocs.zip && \
     unzip -o -q  runtime-libraries.zip && \
     unzip -o -q  base-filesystem.zip && \
