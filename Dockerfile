@@ -2,17 +2,22 @@ FROM openjdk:8-jdk-alpine
 
 MAINTAINER Adaptris
 
-EXPOSE 8080
-EXPOSE 5555
+EXPOSE 8080 5555
+
+ARG INTERLOK_VERSION=3.9.0
+ARG BASE_URL=https://development.adaptris.net/installers/Interlok/${INTERLOK_VERSION}/
+
+RUN \
+    apk add --no-cache --update ca-certificates openssl bash curl unzip
 
 ADD docker-entrypoint.sh /
 RUN mkdir -p /opt/interlok/logs
 WORKDIR /opt/interlok/
 
-RUN apk add --no-cache --update ca-certificates openssl bash wget unzip nss && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.8.4/base-filesystem.zip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.8.4/runtime-libraries.zip && \
-    wget -q https://development.adaptris.net/installers/Interlok/3.8.4/javadocs.zip && \
+RUN  \
+    curl -fsSL -o base-filesystem.zip -q ${BASE_URL}/base-filesystem.zip && \
+    curl -fsSL -o runtime-libraries.zip ${BASE_URL}/runtime-libraries.zip && \
+    curl -fsSL -o javadocs.zip ${BASE_URL}/javadocs.zip && \
     unzip -q -o javadocs.zip && \
     unzip -q -o runtime-libraries.zip && \
     unzip -q -o  base-filesystem.zip && \
@@ -22,7 +27,5 @@ RUN apk add --no-cache --update ca-certificates openssl bash wget unzip nss && \
     rm -rf *.zip
 
 VOLUME [ "/opt/interlok/config", "/opt/interlok/logs" , "/opt/interlok/ui-resources" ]
-
-WORKDIR /opt/interlok
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
