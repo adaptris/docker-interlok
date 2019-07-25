@@ -7,8 +7,8 @@ EXPOSE 8080 5555
 ARG INTERLOK_VERSION=3.9.0
 ARG BASE_URL=https://development.adaptris.net/installers/Interlok/${INTERLOK_VERSION}/
 
-RUN yum update -y update && \
-    yum install -y curl unzip && \
+RUN yum -y update && \
+    yum -y install curl unzip && \
     yum clean all
 
 ADD docker-entrypoint.sh /
