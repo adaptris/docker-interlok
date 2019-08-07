@@ -10,7 +10,7 @@ ext {
 
   interlokInstallDirectory = project.hasProperty('interlokInstallDirectory') ? project.getProperty('interlokInstallDirectory') :  "/opt/interlok"
   log4j2Version = '2.12.0'
-  slf4jVersion = '1.7.26'
+  slf4jVersion = '1.7.27'
 }
 
 distTar.enabled=false
