@@ -4,7 +4,7 @@ MAINTAINER Adaptris
 
 EXPOSE 8080 5555
 
-ARG INTERLOK_VERSION=3.9.0
+ARG INTERLOK_VERSION=3.9.1
 ARG BASE_URL=https://development.adaptris.net/installers/Interlok/${INTERLOK_VERSION}/
 
 RUN \
