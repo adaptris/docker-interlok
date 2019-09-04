@@ -17,6 +17,7 @@ RUN cd /root/builder && \
     ./gradlew --no-daemon installDist && \
     chmod +x /docker-entrypoint.sh && \
     rm -rf /root/.gradle && \
+    rm -f /opt/interlok/lib/javax.el-api.jar && \
     rm -rf /root/builder
 
 ENV JAVA_TOOL_OPTIONS=""
