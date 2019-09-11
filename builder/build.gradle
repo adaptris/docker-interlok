@@ -52,6 +52,7 @@ dependencies {
   interlokRuntime  group: "com.adaptris", name: "interlok-logging", version: "$interlokCoreVersion", changing: true
   interlokRuntime  group: "com.adaptris", name: "interlok-core", version: "$interlokCoreVersion", changing: true
   interlokRuntime  group: "com.adaptris", name: "interlok-licensing", version: "$interlokCoreVersion", changing: true
+  interlokRuntime  group: "com.adaptris", name: "interlok-varsub", version: "$interlokCoreVersion", changing: true
 
   // If you want javadocs.
   interlokJavaDocs group: "com.adaptris", name: "interlok-core", version: "$interlokCoreVersion", changing: true, classifier: "javadoc", transitive: false
