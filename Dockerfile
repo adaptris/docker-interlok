@@ -4,14 +4,14 @@ MAINTAINER Adaptris
 
 EXPOSE 8080 5555
 
-ARG INTERLOK_VERSION=3.9.1
+ARG INTERLOK_VERSION=3.9.2
 ARG BASE_URL=https://development.adaptris.net/installers/Interlok/${INTERLOK_VERSION}/
 
 RUN yum -y update && \
     yum -y install curl unzip && \
     yum clean all
 
-ADD docker-entrypoint.sh /
+COPY docker-entrypoint.sh /
 RUN mkdir -p /opt/interlok/logs
 WORKDIR /opt/interlok/
 
