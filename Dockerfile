@@ -4,13 +4,13 @@ MAINTAINER Adaptris
 
 EXPOSE 8080 5555
 
-ARG INTERLOK_VERSION=3.9.1
+ARG INTERLOK_VERSION=3.9.2
 ARG BASE_URL=https://development.adaptris.net/installers/Interlok/${INTERLOK_VERSION}/
 
 RUN \
     apk add --no-cache --update ca-certificates openssl bash curl unzip
 
-ADD docker-entrypoint.sh /
+COPY docker-entrypoint.sh /
 RUN mkdir -p /opt/interlok/logs
 WORKDIR /opt/interlok/
 
