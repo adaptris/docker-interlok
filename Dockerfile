@@ -13,7 +13,7 @@ RUN yum -y update && \
     yum -y install https://edgecastcdn.net/00423A/releases/CE-Candidate-7.2.16/bin/clienttools/hpccsystems-clienttools-community_7.2.16-1.el7.x86_64.rpm && \
     yum -y clean all
 
-ARG INTERLOK_VERSION=3.9.1
+ARG INTERLOK_VERSION=3.9.2
 ARG BASE_URL=https://development.adaptris.net/installers/Interlok/${INTERLOK_VERSION}/
 
 COPY docker-entrypoint.sh /
