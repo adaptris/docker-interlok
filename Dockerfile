@@ -10,7 +10,7 @@ ARG BASE_URL=https://development.adaptris.net/installers/Interlok/${INTERLOK_VER
 RUN \
     apk add --no-cache --update ca-certificates openssl bash curl unzip
 
-ADD docker-entrypoint.sh /
+COPY docker-entrypoint.sh /
 RUN mkdir -p /opt/interlok/logs
 WORKDIR /opt/interlok/
 
