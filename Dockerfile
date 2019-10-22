@@ -4,7 +4,7 @@ MAINTAINER Adaptris
 
 EXPOSE 8080 5555
 
-ARG INTERLOK_VERSION=3.9.1
+ARG INTERLOK_VERSION=3.9.2
 ARG BASE_URL=https://development.adaptris.net/installers/Interlok/${INTERLOK_VERSION}/
 
 RUN apt-get -y -q update && \
@@ -12,7 +12,7 @@ RUN apt-get -y -q update && \
     apt-get install -y curl bash unzip && \
     rm -rf /var/lib/apt/lists/*
 
-ADD docker-entrypoint.sh /
+COPY docker-entrypoint.sh /
 RUN mkdir -p /opt/interlok/logs
 WORKDIR /opt/interlok/
 
