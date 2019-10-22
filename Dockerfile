@@ -16,8 +16,8 @@ RUN yum -y update && \
 ARG INTERLOK_VERSION=3.9.1
 ARG BASE_URL=https://development.adaptris.net/installers/Interlok/${INTERLOK_VERSION}/
 
-ADD docker-entrypoint.sh /
-ADD interlok-entrypoint.sh /
+COPY docker-entrypoint.sh /
+COPY interlok-entrypoint.sh /
 RUN mkdir -p /opt/interlok/logs
 WORKDIR /opt/interlok/
 
