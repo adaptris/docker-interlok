@@ -1,4 +1,4 @@
-FROM adaptris/interlok:snapshot-zulu-alpine
+FROM adaptris/interlok-base:snapshot-zulu-alpine
 
 EXPOSE 8080 5555
 VOLUME [ "/opt/interlok/config", "/opt/interlok/logs" , "/opt/interlok/ui-resources" ]
