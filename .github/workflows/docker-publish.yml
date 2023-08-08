@@ -36,12 +36,12 @@ jobs:
               artifactAndTags.push(buildFullTag("latest"));
             }
             artifactAndTags.push(buildFullTag(tag));
-            return {"tag": tag, "artifactAndTags": artifactAndTags.join(",")}
+            return {tag: tag, artifactAndTags: artifactAndTags.join(",")}
           result-encoding: json
 
       - name: Echo
         run: |
-          echo "Build Docker image: [${{ fromJson(steps.get-tags.outputs.result).artifactAndTags }}], Tag: ${{ steps.get-tags.outputs.result.tag }}, Publish: ${{ github.event_name != 'pull_request' }}"
+          echo "Build Docker image: ${{ fromJson(steps.get-tags.outputs.result).artifactAndTags }}, Tag: ${{ fromJson(steps.get-tags.outputs.result).tag }}, Publish: ${{ github.event_name != 'pull_request' }}"
 
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -59,8 +59,8 @@ jobs:
         with:
           file: ./${{ matrix.dist }}/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.get-tags.outputs.result.artifactAndTags }}
+          tags: ${{ fromJson(steps.get-tags.outputs.result).artifactAndTags }}
           labels: interlok
-          build-args: INTERLOK_BASE_IMAGE=${{ steps.get-tags.outputs.result.tag }}
+          build-args: INTERLOK_BASE_IMAGE=${{ fromJson(steps.get-tags.outputs.result).tag }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
