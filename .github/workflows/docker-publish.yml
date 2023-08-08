@@ -36,12 +36,12 @@ jobs:
               artifactAndTags.push(buildFullTag("latest"));
             }
             artifactAndTags.push(buildFullTag(tag));
-            return {tag: tag, artifactAndTags: artifactAndTags.join(",")}
+            return {"tag": tag, "artifactAndTags": artifactAndTags.join(",")}
           result-encoding: json
 
       - name: Echo
         run: |
-          echo "Build Docker image: ${{ steps.get-tags.outputs.artifactAndTags }}, Tag: ${{ steps.get-tags.outputs.tag }}, Publish: ${{ github.event_name != 'pull_request' }}"
+          echo "Build Docker image: [${{ steps.get-tags.outputs }}], ${{ steps.get-tags.outputs.artifactAndTags }}, Tag: ${{ steps.get-tags.outputs.tag }}, Publish: ${{ github.event_name != 'pull_request' }}"
 
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
