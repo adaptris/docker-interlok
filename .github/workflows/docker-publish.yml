@@ -36,7 +36,7 @@ jobs:
               artifactAndTags.push(buildFullTag("latest"));
             }
             artifactAndTags.push(buildFullTag(tag));
-            return {tag: , artifactAndTags: artifactAndTags.join(",")}
+            return {tag: tag, artifactAndTags: artifactAndTags.join(",")}
 
       - name: Echo
         run: |
