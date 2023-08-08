@@ -1,4 +1,4 @@
-# Interlok docker image [![Docker Pulls](https://img.shields.io/docker/pulls/adaptris/interlok.svg)](https://hub.docker.com/r/adaptris/interlok/)
+# Interlok image for Docker Hub [![Docker Pulls](https://img.shields.io/docker/pulls/adaptris/interlok.svg)](https://hub.docker.com/r/adaptris/interlok/)
 
 Basic Docker image of Interlok that pulls from `adaptris/interlok-base` and...
 
