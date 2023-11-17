@@ -13,7 +13,7 @@ jobs:
   build-and-push:
     strategy:
       matrix:
-        dist: [corretto, debian, zulu, zulu-alpine, adoptopenjdk, msopenjdk]
+        dist: [corretto, debian, zulu, zulu-alpine, msopenjdk]
 
     runs-on: ubuntu-latest
 
