@@ -12,6 +12,21 @@ updates:
     open-pull-requests-limit: 20
     schedule:
       interval: "weekly"
+    allow:
+      - dependency-type: "all"
+    labels:
+      - "github_actions"
+      - "snapshot"
+    reviewers:
+      - aaron-mcgrath-adp
+      - sebastien-belin-adp
+      - higgyfella
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    open-pull-requests-limit: 20
+    schedule:
+      interval: "weekly"
     target-branch: "release"
     allow:
       - dependency-type: "all"
