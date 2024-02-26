@@ -1,0 +1,8 @@
+builder/build
+builder/.gradle
+.dependabot
+.git
+.gitattributes
+.gitignore
+LICENSE
+README.md
