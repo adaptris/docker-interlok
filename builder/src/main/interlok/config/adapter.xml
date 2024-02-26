@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<adapter>
+  <unique-id>MyInterlokInstance</unique-id>
+  <heartbeat-event-interval>
+    <unit>MINUTES</unit>
+    <interval>60</interval>
+  </heartbeat-event-interval>
+</adapter>
