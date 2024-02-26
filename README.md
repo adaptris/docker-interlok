@@ -1,5 +1,6 @@
 # Interlok image for Docker Hub
-[![Docker Publish](https://github.com/adaptris/docker-interlok/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/adaptris/docker-interlok/actions/workflows/docker-publish.yml) [![Docker Pulls](https://img.shields.io/docker/pulls/adaptris/interlok.svg)](https://hub.docker.com/r/adaptris/interlok/)
+
+[![Docker Pulls](https://img.shields.io/docker/pulls/adaptris/interlok.svg)](https://hub.docker.com/r/adaptris/interlok/)
 
 Basic Docker image of Interlok that pulls from `adaptris/interlok-base` and...
 
