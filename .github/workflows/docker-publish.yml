@@ -30,7 +30,7 @@ jobs:
               return "adaptris/interlok:" + tag + "-${{ matrix.dist }}";
             }
             var artifactAndTags = [];
-            var tag = "snapshot";
+            var tag = "4-snapshot";
             if ('${{ github.ref_type }}' == 'tag') {
               tag = "${{ github.ref_name }}";
               artifactAndTags.push(buildFullTag("4"));
