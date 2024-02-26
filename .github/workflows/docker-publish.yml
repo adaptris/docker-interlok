@@ -3,7 +3,7 @@ name: Docker Publish
 on:
   push:
     branches:
-      - snapshot
+      - main
     # A tag will build and publish the Docker images
     tags: [ '*.*.*' ]
   pull_request:
