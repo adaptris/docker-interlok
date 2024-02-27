@@ -1,10 +1,4 @@
 version: 2
-registries:
-  maven-github:
-    type: maven-repository
-    url: https://nexus.adaptris.net/nexus/content/groups/interlok
-    username: dummy
-    password: dummy-since-this-is-a-public-repo
 
 updates:
   - package-ecosystem: "github-actions"
