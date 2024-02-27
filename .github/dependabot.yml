@@ -1,16 +1,44 @@
 version: 2
 
+registries:
+  interlok:
+    type: maven-repository
+    url: https://nexus.adaptris.net/nexus/content/groups/interlok
+    username: dummy
+    password: dummy-since-this-is-a-public-repo
+
 updates:
-  - package-ecosystem: "github-actions"
+  - package-ecosystem: "gradle"
+    directory: "/builder"
     directory: "/"
     open-pull-requests-limit: 20
+    registries:
+      - "interlok"
     schedule:
       interval: "weekly"
+    target-branch: "main"
     allow:
       - dependency-type: "all"
     labels:
-      - "github_actions"
-      - "snapshot"
+      - "main"
+    reviewers:
+      - aaron-mcgrath-adp
+      - sebastien-belin-adp
+      - higgyfella
+
+  - package-ecosystem: "gradle"
+    directory: "/builder"
+    directory: "/"
+    open-pull-requests-limit: 20
+    registries:
+      - "interlok"
+    schedule:
+      interval: "weekly"
+    target-branch: "main-v4"
+    allow:
+      - dependency-type: "all"
+    labels:
+      - "main-v4"
     reviewers:
       - aaron-mcgrath-adp
       - sebastien-belin-adp
@@ -21,12 +49,12 @@ updates:
     open-pull-requests-limit: 20
     schedule:
       interval: "weekly"
-    target-branch: "release"
+    target-branch: "main"
     allow:
       - dependency-type: "all"
     labels:
       - "github_actions"
-      - "release"
+      - "main"
     reviewers:
       - aaron-mcgrath-adp
       - sebastien-belin-adp
@@ -37,12 +65,12 @@ updates:
     open-pull-requests-limit: 20
     schedule:
       interval: "weekly"
-    target-branch: "release-v4"
+    target-branch: "main-v4"
     allow:
       - dependency-type: "all"
     labels:
       - "github_actions"
-      - "release-v4"
+      - "main-v4"
     reviewers:
       - aaron-mcgrath-adp
       - sebastien-belin-adp
