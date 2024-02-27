@@ -44,7 +44,7 @@ jobs:
           echo "Build Docker image: ${{ fromJson(steps.get-tags.outputs.result).artifactAndTags }}, Tag: ${{ fromJson(steps.get-tags.outputs.result).tag }}, Publish: ${{ github.event_name != 'pull_request' }}"
 
       - name: Setup Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Login to Docker Hub
         if: github.event_name != 'pull_request'
