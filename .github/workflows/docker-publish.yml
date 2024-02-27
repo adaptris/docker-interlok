@@ -31,12 +31,14 @@ jobs:
             }
             var artifactAndTags = [];
             var tag = "4-snapshot";
+            var interlokVersion;
             if ('${{ github.ref_type }}' == 'tag') {
               tag = "${{ github.ref_name }}";
+              interlokVersion = tag + "-RELEASE"
               artifactAndTags.push(buildFullTag("4"));
             }
             artifactAndTags.push(buildFullTag(tag));
-            return {tag: tag, artifactAndTags: artifactAndTags.join(",")}
+            return {tag: tag, artifactAndTags: artifactAndTags.join(","), interlokVersion: interlokVersion }
           result-encoding: json
 
       - name: Echo
@@ -61,6 +63,8 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ fromJson(steps.get-tags.outputs.result).artifactAndTags }}
           labels: interlok
-          build-args: INTERLOK_BASE_IMAGE=${{ fromJson(steps.get-tags.outputs.result).tag }}
+          build-args: |
+            INTERLOK_BASE_IMAGE=${{ fromJson(steps.get-tags.outputs.result).tag }}
+            INTERLOK_VERSION=${{ fromJson(steps.get-tags.outputs.result).interlokVersion }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
