@@ -1,6 +1,7 @@
 version: 2
+
 registries:
-  maven-github:
+  interlok:
     type: maven-repository
     url: https://nexus.adaptris.net/nexus/content/groups/interlok
     username: dummy
@@ -9,11 +10,16 @@ registries:
 updates:
   - package-ecosystem: "gradle"
     directory: "/builder"
+    open-pull-requests-limit: 20
+    registries:
+      - "interlok"
     schedule:
       interval: "weekly"
     target-branch: "main"
     allow:
       - dependency-type: "all"
+    labels:
+      - "main"
     reviewers:
       - aaron-mcgrath-adp
       - sebastien-belin-adp
@@ -21,11 +27,16 @@ updates:
 
   - package-ecosystem: "gradle"
     directory: "/builder"
+    open-pull-requests-limit: 20
+    registries:
+      - "interlok"
     schedule:
       interval: "weekly"
     target-branch: "main-v4"
     allow:
       - dependency-type: "all"
+    labels:
+      - "main-v4"
     reviewers:
       - aaron-mcgrath-adp
       - sebastien-belin-adp
