@@ -1,6 +1,9 @@
 # Docker Interlok
 
-[![Docker Build Status](https://img.shields.io/docker/build/adaptris/interlok.svg)](https://hub.docker.com/r/adaptris/interlok/) [![Docker Pulls](https://img.shields.io/docker/pulls/adaptris/interlok.svg)](https://hub.docker.com/r/adaptris/interlok/)
+[![Docker Publish](https://github.com/adaptris/docker-interlok/actions/workflows/docker-publish.yml/badge.svg?branch=main-v4)](https://github.com/adaptris/docker-interlok/actions/workflows/docker-publish.yml)
+[![Docker Pulls](https://img.shields.io/docker/pulls/adaptris/interlok.svg)](https://hub.docker.com/r/adaptris/interlok/)
+
+https://hub.docker.com/r/adaptris/interlok
 
 Basic Docker image of Interlok for Docker Hub based on docker-interlok-base
 
