@@ -1,5 +1,6 @@
-ARG INTERLOK_BASE_IMAGE=4
 FROM adaptris/interlok-base:${INTERLOK_BASE_IMAGE}-zulu-alpine
+ARG INTERLOK_BASE_IMAGE=4
+ARG INTERLOK_VERSION
 
 COPY builder /root/builder
 
