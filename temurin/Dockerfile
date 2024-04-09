@@ -1,5 +1,6 @@
 ARG INTERLOK_BASE_IMAGE=latest
 FROM adaptris/interlok-base:${INTERLOK_BASE_IMAGE}-temurin
+ARG INTERLOK_VERSION
 
 COPY builder /root/builder
 
