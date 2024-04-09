@@ -1,6 +1,6 @@
 ARG INTERLOK_BASE_IMAGE=4
-ARG INTERLOK_VERSION
 FROM adaptris/interlok-base:${INTERLOK_BASE_IMAGE}-adoptopenjdk
+ARG INTERLOK_VERSION
 
 COPY builder /root/builder
 
