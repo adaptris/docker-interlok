@@ -1,6 +1,6 @@
-FROM adaptris/interlok-base:${INTERLOK_BASE_IMAGE}-msopenjdk
 ARG INTERLOK_BASE_IMAGE=4
 ARG INTERLOK_VERSION
+FROM adaptris/interlok-base:${INTERLOK_BASE_IMAGE}-msopenjdk
 
 COPY builder /root/builder
 
